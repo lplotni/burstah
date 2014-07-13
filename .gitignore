@@ -4,6 +4,7 @@ public/.sass-cache
 # Logs
 logs
 *.log
+nohup.out 
 
 # Runtime xml
 pids
