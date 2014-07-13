@@ -1,6 +1,6 @@
 .idea/
 bin/
-
+public/.sass-cache
 # Logs
 logs
 *.log
