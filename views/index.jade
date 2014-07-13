@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  each stage, index in stages
+    div(class= 'stage ' + stage.lastBuildStatus.toLowerCase() + ' ' + (index%2===0 ? 'left' : 'right') + ' ' + stage.activity.toLowerCase())
+      .row
+        .name= stage.name.toUpperCase()
+        .build-number= stage.lastBuildLabel
+      .row
+        .commit-msg= stage.comment
+        .committer= stage.committer

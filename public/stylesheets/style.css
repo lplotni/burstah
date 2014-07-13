@@ -1,0 +1,75 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+body {
+  color: white;
+  background-color: black;
+}
+body .footer {
+  font: 15px "Lobster";
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  color: #b5b935;
+}
+body .footer .name {
+  color: #ef5ba1;
+}
+
+@-webkit-keyframes building {
+  0% {
+    background: #26bdcf;
+  }
+
+  100% {
+    background: #ef5ba1;
+  }
+}
+.building {
+  -webkit-animation: building 2s ease-out 0s infinite alternate;
+}
+
+.stage {
+  width: 49%;
+  min-height: 120px;
+  margin-top: 4px;
+  font-family: "Open Sans";
+}
+.stage.left {
+  float: left;
+}
+.stage.right {
+  float: right;
+}
+.stage.success {
+  background-color: #11aa58;
+}
+.stage.failure {
+  background-color: #ee312d;
+}
+.stage .row {
+  margin-bottom: 3px;
+  height: 50%;
+}
+.stage .name {
+  padding-left: 5px;
+  font-size: 25px;
+  font-weight: bolder;
+  width: 80%;
+  float: left;
+}
+.stage .build-number {
+  font-size: 25px;
+  font-weight: lighter;
+  width: 19%;
+  float: right;
+  text-align: center;
+}
+.stage .commit-msg {
+  float: left;
+  width: 100%;
+  padding-left: 5px;
+}
+.stage .committer {
+  padding-left: 5px;
+  float: left;
+}

@@ -1,9 +1,22 @@
 {
-  "name": "burstah",
-  "description": "Go CI build monitor (backend part)",
+  "name": "generated",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "dependencies": {
-    "express": "4.6.1"
+    "express": "~4.2.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "jade": "~1.3.0",
+    "node-compass": "0.2.3",
+    "xml2js": "0.4.4",
+    "lodash": "2.4.1",
+    "cheerio": "0.17.0",
+    "q": "2.0.0"
   }
 }

@@ -1,8 +1,11 @@
+.idea/
+bin/
+
 # Logs
 logs
 *.log
 
-# Runtime data
+# Runtime xml
 pids
 *.pid
 *.seed
