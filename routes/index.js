@@ -4,43 +4,27 @@ var parseString = require('xml2js').parseString;
 var _ = require('lodash');
 var cheerio = require('cheerio');
 var Q = require('q');
-
+var config = require('../config.js').getConfig();
 
 var router = express.Router();
 
-var projectName = 'QEN';
-var stages = [
-  'build :: both',
-  'integration-test :: backend-integration',
-  'deploy-dev :: backend',
-  'deploy-dev :: client',
-  'smoke-test-dev :: backend',
-  'functional-test :: both',
-  'deploy-showcase :: backend',
-  'deploy-showcase :: client',
-  'smoke-test-showcase :: backend',
-  'deploy-integration :: backend',
-  'deploy-integration :: client',
-  'smoke-test-integration :: backend'
-];
-
-var buildNames = _.map(stages, function (stage) {
-  return projectName + ' :: ' + stage
+var buildNames = _.map(config.project.stages, function (stage) {
+  return config.project.name + ' :: ' + stage
 });
 
 var cctrayFile = {
-  hostname: '54.194.156.79',
-  port: 8153,
+  hostname: config.hostname,
+  port: config.port,
   path: '/go/cctray.xml',
-  method: 'GET'
-//  auth: 'user:password'
+  method: 'GET',
+  auth: config.auth
 };
 
 var materialsHtml = {
-  hostname: '54.194.156.79',
-  port: 8153,
-  method: 'GET'
-//  auth: 'user:password'
+  hostname: config.hostname,
+  port: config.port,
+  method: 'GET',
+  auth: config.auth
 };
 
 function prepareData(cctrayObject) {
