@@ -1,10 +1,9 @@
 .idea/
-bin/
 public/.sass-cache
 # Logs
 logs
 *.log
-nohup.out 
+nohup.out
 
 # Runtime xml
 pids
