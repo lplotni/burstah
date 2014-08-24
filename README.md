@@ -37,3 +37,8 @@ var config = {
     }
   };
 ```
+###To improve
+If you're used to node.js and express.js than you should be able to quickly navigate, through the code. For testing, I use [jasmine-node](https://github.com/mhevery/jasmine-node). All the tests can be found in the spec folder. To run them just enter
+```
+jasmine-node spec/
+```
