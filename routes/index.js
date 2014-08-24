@@ -7,6 +7,7 @@ var Q = require('q');
 var config = require('../config.js').getConfig();
 
 var cctray = require('./cctray.js').init();
+var commitDetails = require('./commitDetails.js').init();
 
 var router = express.Router();
 
@@ -55,15 +56,12 @@ function parseXml(xml) {
 
 function getBuildDuration() {
   // http://qen.ci:8153/go/properties/QEN/1160/build/1/both/cruise_job_duration
-
 }
 
 function enrichWithCommitDetails(basicData) {
   var deferred = Q.defer();
 
   var buildNumbers = extractBuildNumbers(basicData);
-  materialsHtml.path = '/go/pipelines/QEN/' + buildNumbers[0] + '/build/1/materials'
-
   var deferredObjs = _.times(buildNumbers.length, Q.defer);
   var promises = _.map(deferredObjs, function (d) {
     return d.promise
@@ -71,7 +69,7 @@ function enrichWithCommitDetails(basicData) {
 
   _.each(buildNumbers, function (nr, index) {
     var materials = '';
-    materialsHtml.path = '/go/pipelines/QEN/' + nr + '/build/1/materials';
+    materialsHtml.path = commitDetails.getPath(config.project.name, nr);
     http.get(materialsHtml, function (m) {
       m.on('data', function (htmlChunk) {
         materials += htmlChunk;
