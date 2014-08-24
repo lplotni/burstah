@@ -6,6 +6,8 @@ var cheerio = require('cheerio');
 var Q = require('q');
 var config = require('../config.js').getConfig();
 
+var cctray = require('./cctray.js').init();
+
 var router = express.Router();
 
 var buildNames = _.map(config.project.stages, function (stage) {
@@ -27,16 +29,6 @@ var materialsHtml = {
   auth: config.auth
 };
 
-function prepareData(cctrayObject) {
-  return _.chain(cctrayObject.Projects.Project)
-    .map(function (element) {
-           return element.$;
-         })
-    .filter(function (element) {
-              return _.contains(buildNames, element.name);
-            })
-    .value();
-}
 
 function buildNumber(label) {
   var nr = label;
@@ -56,9 +48,14 @@ function withoutTimestamp(data) {
 function parseXml(xml) {
   var deferred = Q.defer();
   parseString(xml, function (err, result) {
-    deferred.resolve(prepareData(result));
+    deferred.resolve(cctray.prepareData(result, buildNames));
   });
   return deferred.promise;
+}
+
+function getBuildDuration() {
+  // http://qen.ci:8153/go/properties/QEN/1160/build/1/both/cruise_job_duration
+
 }
 
 function enrichWithCommitDetails(basicData) {
