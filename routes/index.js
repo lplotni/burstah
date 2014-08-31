@@ -11,10 +11,6 @@ var commitDetails = require('./commitDetails.js').init();
 
 var router = express.Router();
 
-var buildNames = _.map(config.project.stages, function (stage) {
-  return config.project.name + ' :: ' + stage
-});
-
 var cctrayFile = {
   hostname: config.hostname,
   port: config.port,
@@ -49,7 +45,7 @@ function withoutTimestamp(data) {
 function parseXml(xml) {
   var deferred = Q.defer();
   parseString(xml, function (err, result) {
-    deferred.resolve(cctray.prepareData(result, buildNames));
+    deferred.resolve(cctray.prepareData(result, config.limitTo));
   });
   return deferred.promise;
 }
@@ -61,34 +57,40 @@ function getBuildDuration() {
 function enrichWithCommitDetails(basicData) {
   var deferred = Q.defer();
 
-  var buildNumbers = extractBuildNumbers(basicData);
-  var deferredObjs = _.times(buildNumbers.length, Q.defer);
+  var deferredObjs = _.times(basicData.length, Q.defer);
   var promises = _.map(deferredObjs, function (d) {
     return d.promise
   });
 
-  _.each(buildNumbers, function (nr, index) {
+  _.each(basicData, function (data, index) {
     var materials = '';
-    materialsHtml.path = commitDetails.getPath(config.project.name, nr);
+    materialsHtml.path = commitDetails.getPath(data);
     http.get(materialsHtml, function (m) {
       m.on('data', function (htmlChunk) {
         materials += htmlChunk;
       });
       m.on('end', function () {
-        $ = cheerio.load(materials);
-        var modifiedBy = withoutTimestamp($('.material_tab .change .modified_by dd')[0].children[0].data);
-        var comment = $('.material_tab .change .comment p')[0].children[0].data;
-        deferredObjs[index].resolve({number: nr, comment: comment, committer: modifiedBy});
+        var $ = cheerio.load(materials);
+        try{
+          var modifiedBy = withoutTimestamp($('.material_tab .change .modified_by dd')[0].children[0].data);
+          var comment = $('.material_tab .change .comment p')[0].children[0].data;
+          deferredObjs[index].resolve({number: data.lastBuildLabel, comment: comment, committer: modifiedBy});
+        }catch(error){
+          deferredObjs[index].reject(error);
+        }
       });
     });
   });
 
-  Q.all(promises).done(function (results) {
+  Q.allSettled(promises).then(function (results) {
     var fullData = _.map(basicData, function (data) {
       _.each(results, function (result) {
-        if (buildNumber(data.lastBuildLabel) === result.number) {
-          data.comment = result.comment;
-          data.committer = result.committer;
+        if(result.state === 'fulfilled'){
+          var res = result.value;
+          if (buildNumber(data.lastBuildLabel) === res.number) {
+            data.comment = res.comment;
+            data.committer = res.committer;
+          }
         }
       });
       return data;

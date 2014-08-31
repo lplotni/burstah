@@ -10,7 +10,7 @@ var cctray = {
              return element.$;
            })
       .filter(function (element) {
-                return _.contains(buildNames, element.name);
+                return _.isEmpty(buildNames) ? true : _.contains(buildNames, element.name);
               })
       .value();
   }

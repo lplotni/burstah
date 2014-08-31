@@ -29,11 +29,7 @@ var config = {
     hostname: '127.0.0.1', //IP or host the Go server is running on
     port: '8153',
     auth: '', //user:password if Go is using simple auth
-    project: {
-      name: 'QEN', // pipeline name
-        stages: [ //array with all the stages you would like to show
-        'xxx :: yyy', 'zzz :: aaa'
-      ]
+    limitTo: [ 'pipeline_name :: stage_name :: job_name', 'bbb :: zzz :: aaa' ] //array with all the stages you would like to show, if empty everything will be shown
     }
   };
 ```
@@ -42,3 +38,5 @@ If you're used to node.js and express.js than you should be able to quickly navi
 ```
 jasmine-node spec/
 ```
+
+If you want to work with Go APIs, you find the needed documentation here: [Go API docs](http://www.thoughtworks.com/products/docs/go/current/help/go_api.html)

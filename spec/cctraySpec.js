@@ -41,7 +41,7 @@ describe('cctray', function () {
     };
 
     it('should return the requested information in the correct format', function(){
-        var result = cctray.prepareData(cctrayJSON, ['QEN :: build', 'QEN :: build :: both']);
+        var result = cctray.prepareData(cctrayJSON, []);
         var projects = [
           {
             "name": "QEN :: build",
@@ -64,7 +64,7 @@ describe('cctray', function () {
       expect(result).toEqual(projects);
     });
 
-    it('should return only the requested information', function () {
+    it('should return only the requested information if array wth names is specified', function () {
       var result = cctray.prepareData(cctrayJSON, ['QEN :: build :: both']);
       var requestedProject = [
         {

@@ -1,24 +1,8 @@
 var config = {
-    hostname: '54.194.156.79',
+    hostname: 'Go.CD server IP or host',
     port: '8153',
     auth: '', //user:password
-    project: {
-      name: 'QEN',
-        stages: [
-        'build :: both',
-        'integration-test :: backend-integration',
-        'deploy-dev :: backend',
-        'deploy-dev :: client',
-        'smoke-test-dev :: backend',
-        'functional-test :: both',
-        'deploy-showcase :: backend',
-        'deploy-showcase :: client',
-        'smoke-test-showcase :: backend',
-        'deploy-integration :: backend',
-        'deploy-integration :: client',
-        'smoke-test-integration :: backend'
-      ]
-    }
+    limitTo: [] //if empty all the content from the cctray.xml will be visualized
   };
 
 exports.getConfig = function(){return config;};
