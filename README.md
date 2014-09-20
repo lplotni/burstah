@@ -12,6 +12,8 @@
 **burstah** is a build monitor for [Go](http://go.cd) based on [node.js](http://nodejs.org).
 It is a refreshed implementation of [cidar](https://github.com/patforna/cidar).
 
+![Burstah screenshot](/burstah_in_action.png?raw=true "Burstah in action")
+
 ###To run is just do following:
 
 ```
