@@ -56,6 +56,11 @@ post '/control/failure' do
   redirect "/control"
 end
 
+get '/go/cctray.xml' do
+  content_type :xml
+  haml :cctray
+end
+
 get '/cctray.xml' do
   content_type :xml
   haml :cctray
@@ -89,18 +94,18 @@ __END__
   %h1 Fake CI Server
   %table
     %tr
-      %td Activitiy:	
+      %td Activitiy:
       %td= @@ACTIVITY
     %tr
       %td Status:
       %td= @@STATUS
     %tr
-      %td Build number:	
+      %td Build number:
       %td= @@BUILD_NUM
     %tr
-      %td Build time:	
+      %td Build time:
       %td= @@BUILD_TIME
-  %p 
+  %p
   %form{:name => "input", :action => "control/build", :method => "post"}
     %input{:type => "submit", :value => "Start build", :disabled => is_building() }
   %form{:name => "input", :action => "control/success", :method => "post"}
@@ -112,14 +117,23 @@ __END__
 @@ cctray
 !!! XML
 %Projects
-  %Project{:name => 'other project', :webUrl => 'http://localhost:4567/dashboard/build/detail/other-project',
+  %Project{:name => 'pipeline1 :: stage :: job1', :webUrl => 'http://localhost:4567/dashboard/build/detail/other-project',
     :activity => :Sleeping, :lastBuildStatus => :Success,
     :lastBuildLabel => "build.1234", :lastBuildTime => "2007-07-18T18:44:48"}
-  %Project{:name => 'connectfour', :webUrl => 'http://localhost:4567/dashboard/build/detail/connectfour',
+  %Project{:name => 'pipeline1 :: stage :: job2', :webUrl => 'http://localhost:4567/dashboard/build/detail/connectfour',
     :activity => @@ACTIVITY, :lastBuildStatus => @@STATUS,
     :lastBuildLabel => "build.#{@@BUILD_NUM}", :lastBuildTime => @@BUILD_TIME}
-  %Project{:name => 'dummy', :webUrl => 'http://localhost:4567/dashboard/build/detail/dummy',
-    :activity => :Sleeping, :lastBuildStatus => :Unknown,
+  %Project{:name => 'pipeline1 :: stage :: job3', :webUrl => 'http://localhost:4567/dashboard/build/detail/dummy',
+    :activity => :Sleeping, :lastBuildStatus => :Failure,
+    :lastBuildLabel => "build.99", :lastBuildTime => "2007-07-18T18:44:48"}
+  %Project{:name => 'pipeline2 :: stage :: job1', :webUrl => 'http://localhost:4567/dashboard/build/detail/other-project',
+    :activity => :Sleeping, :lastBuildStatus => :Success,
+    :lastBuildLabel => "build.1234", :lastBuildTime => "2007-07-18T18:44:48"}
+  %Project{:name => 'pipeline2 :: stage :: job2', :webUrl => 'http://localhost:4567/dashboard/build/detail/connectfour',
+    :activity => @@ACTIVITY, :lastBuildStatus => @@STATUS,
+    :lastBuildLabel => "build.#{@@BUILD_NUM}", :lastBuildTime => @@BUILD_TIME}
+  %Project{:name => 'pipeline2 :: stage :: job3', :webUrl => 'http://localhost:4567/dashboard/build/detail/dummy',
+    :activity => :Sleeping, :lastBuildStatus => :Failure,
     :lastBuildLabel => "build.99", :lastBuildTime => "2007-07-18T18:44:48"}
 
 
@@ -128,5 +142,3 @@ __END__
 %html
   %h1 Connect Four
   %p This is the project page on the build server.
-
-
