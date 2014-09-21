@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'csv'
 
 $KCODE = 'u' if RUBY_VERSION < '1.9'
 
@@ -83,6 +84,15 @@ end
 
 get '/dashboard/build/detail/connectfour' do
   haml :project
+end
+
+get '/go/properties/:pipeline/:buildNumber/:stage/1/:job/cruise_job_duration' do
+  content_type 'application/csv'
+  attachment "buildProperties.csv"
+  csv_string = CSV.generate do |csv|
+    csv << ["cruise_job_duration"]
+    csv << ["100"]
+  end
 end
 
 
