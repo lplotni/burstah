@@ -1,0 +1,8 @@
+var config = {
+  hostname: process.env['GOCD_SERVER_PORT_8153_TCP_ADDR'],
+  port: process.env['GOCD_SERVER_PORT_8153_TCP_PORT'],
+  auth: '',
+  limitTo: []
+};
+
+exports.getConfig = function(){return config;};
