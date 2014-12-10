@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var parseString = require('xml2js').parseString;
 var _ = require('lodash');
 var cheerio = require('cheerio');
@@ -16,14 +17,16 @@ var cctrayFile = {
   port: config.port,
   path: '/go/cctray.xml',
   method: 'GET',
-  auth: config.auth
+  auth: config.auth,
+  rejectUnauthorized: false
 };
 
 var materialsHtml = {
   hostname: config.hostname,
   port: config.port,
   method: 'GET',
-  auth: config.auth
+  auth: config.auth,
+  rejectUnauthorized: false
 };
 
 
@@ -65,7 +68,7 @@ function enrichWithCommitDetails(basicData) {
   _.each(basicData, function (data, index) {
     var materials = '';
     materialsHtml.path = commitDetails.getPath(data);
-    http.get(materialsHtml, function (m) {
+    https.get(materialsHtml, function (m) {
       m.on('data', function (htmlChunk) {
         materials += htmlChunk;
       });
@@ -121,7 +124,7 @@ router.get('/', function (req, res) {
     }
   }
 
-  http.get(cctrayFile, handleCctrayRequest).on('error', deferred.reject);
+  https.get(cctrayFile, handleCctrayRequest).on('error', deferred.reject);
 
   function renderWithData(data) {
     res.render('index', data);
