@@ -1,11 +1,10 @@
 var express = require('express');
-var http = require('http');
-var https = require('https');
 var parseString = require('xml2js').parseString;
 var _ = require('lodash');
 var cheerio = require('cheerio');
 var Q = require('q');
 var config = require('../config.js').getConfig();
+var http = config.ssl ? require('https') : require('http');
 
 var cctray = require('./cctray.js').init();
 var commitDetails = require('./commitDetails.js').init();
@@ -68,7 +67,7 @@ function enrichWithCommitDetails(basicData) {
   _.each(basicData, function (data, index) {
     var materials = '';
     materialsHtml.path = commitDetails.getPath(data);
-    https.get(materialsHtml, function (m) {
+    http.get(materialsHtml, function (m) {
       m.on('data', function (htmlChunk) {
         materials += htmlChunk;
       });
@@ -124,7 +123,7 @@ router.get('/', function (req, res) {
     }
   }
 
-  https.get(cctrayFile, handleCctrayRequest).on('error', deferred.reject);
+  http.get(cctrayFile, handleCctrayRequest).on('error', deferred.reject);
 
   function renderWithData(data) {
     res.render('index', data);
