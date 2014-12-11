@@ -1,4 +1,4 @@
-#burstah
+#burstah [![Build Status](https://snap-ci.com/lplotni/burstah/branch/master/build_image)](https://snap-ci.com/lplotni/burstah/branch/master)
 ```
  _______  __   __  ______    _______  _______  _______  __   __
 |  _    ||  | |  ||    _ |  |       ||       ||   _   ||  | |  |
