@@ -18,5 +18,8 @@
     "lodash": "2.4.1",
     "cheerio": "0.17.0",
     "q": "2.0.0"
+  },
+  "devDependencies":{
+    "jasmine-node": "2.0.0"
   }
 }
