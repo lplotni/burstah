@@ -1,10 +1,10 @@
 var express = require('express');
-var http = require('http');
 var parseString = require('xml2js').parseString;
 var _ = require('lodash');
 var cheerio = require('cheerio');
 var Q = require('q');
 var config = require('../config.js').getConfig();
+var http = config.ssl ? require('https') : require('http');
 
 var cctray = require('./cctray.js').init();
 var commitDetails = require('./commitDetails.js').init();
@@ -16,14 +16,16 @@ var cctrayFile = {
   port: config.port,
   path: '/go/cctray.xml',
   method: 'GET',
-  auth: config.auth
+  auth: config.auth,
+  rejectUnauthorized: false
 };
 
 var materialsHtml = {
   hostname: config.hostname,
   port: config.port,
   method: 'GET',
-  auth: config.auth
+  auth: config.auth,
+  rejectUnauthorized: false
 };
 
 
