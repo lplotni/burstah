@@ -19,7 +19,8 @@
     "cheerio": "0.17.0",
     "q": "2.0.0"
   },
-  "devDependencies":{
+  "devDependencies": {
+    "gulp": "^3.8.10",
     "jasmine-node": "2.0.0"
   }
 }
