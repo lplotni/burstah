@@ -44,4 +44,8 @@ jasmine-node spec/
 If you want to work with Go APIs, you find the needed documentation here: [Go API docs](http://www.thoughtworks.com/products/docs/go/current/help/go_api.html)
 
 ####Fake Go.Cd Server
-If you want to work on new features without running or communitcating with a real Go instance, you can just start the fake Go which can be found in the *fakeGo* directory. Just run `ruby server.rb` and this will start a simple sinatra-based app which offers the cctray.xml and is accessible via http://localhost:4567
+If you want to work on new features without running or communitcating with a real Go instance, you can just start the fake Go which can be found in the *fakeGo* directory.
+````gulp fakeGo````
+If you develop and start burstah locally using gulp, then fakeGo will be
+started automaticaly.
+FakeGo is a simple sinatra-based app which offers the cctray.xml and is accessible via http://localhost:4567

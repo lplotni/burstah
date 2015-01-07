@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var shell = require('gulp-shell');
 
 gulp.task('express', function() {
   var debug = require('debug')('generated');
@@ -11,6 +12,8 @@ gulp.task('express', function() {
   });
 });
 
-gulp.task('default', ['express'], function() {
+gulp.task('fakeGo',shell.task(['ruby fakeGo/server.rb'])) 
+
+gulp.task('default', ['fakeGo','express'], function() {
 
 });
