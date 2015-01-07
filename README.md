@@ -36,11 +36,15 @@ var config = {
   };
 ```
 ###To improve
-If you're used to node.js and express.js than you should be able to quickly navigate, through the code. For testing, I use [jasmine-node](https://github.com/mhevery/jasmine-node). All the tests can be found in the spec folder. To run them just enter
+If you're used to node.js and express.js than you should be able to quickly navigate, through the code. 
+
+####Tests
+As we use gulp, we use gulp-jasmine for test execution. All the tests can be found in the spec folder. To run them just enter
 ```
-jasmine-node spec/
+gulp test
 ```
 
+####Go.cd API
 If you want to work with Go APIs, you find the needed documentation here: [Go API docs](http://www.thoughtworks.com/products/docs/go/current/help/go_api.html)
 
 ####Fake Go.Cd Server
