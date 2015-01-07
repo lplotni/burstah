@@ -24,6 +24,7 @@ body .footer .name {
     background: #ef5ba1;
   }
 }
+
 .building {
   -webkit-animation: building 2s ease-out 0s infinite alternate;
 }
