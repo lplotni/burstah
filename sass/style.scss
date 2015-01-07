@@ -24,8 +24,14 @@ body {
   100%  {background: rgb(239,91,161);}
 }
 
+@-moz-keyframes building {
+  0%   {background: rgb(38,189,207);}
+  100%  {background: rgb(239,91,161);}
+}
+
 .building {
-  -webkit-animation: building 2s ease-out 0s infinite alternate;
+    -webkit-animation: building 2s ease-out 0s infinite alternate;
+    -moz-animation: building 2s ease-out 0s infinite alternate;
 }
 //END
 
