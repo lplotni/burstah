@@ -19,6 +19,7 @@ It is a refreshed implementation of [cidar](https://github.com/patforna/cidar).
 ```
    git clone https://github.com/lplotni/burstah.git
    cd burstah
+   sudo gem install compass
    npm install
    nohup npm start &
 ```
