@@ -24,8 +24,20 @@ body .footer .name {
     background: #ef5ba1;
   }
 }
+
+@-moz-keyframes building {
+  0% {
+    background: #26bdcf;
+  }
+
+  100% {
+    background: #ef5ba1;
+  }
+}
+
 .building {
   -webkit-animation: building 2s ease-out 0s infinite alternate;
+  -moz-animation: building 2s ease-out 0s infinite alternate;
 }
 
 .stage {
