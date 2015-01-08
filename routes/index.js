@@ -93,6 +93,9 @@ function enrichWithCommitDetails(basicData) {
             data.comment = res.comment;
             data.committer = res.committer;
           }
+          if(data.lastBuildLabel.length > 39){
+            data.lastBuildLabel = data.lastBuildLabel.slice(0,7);
+          }
         }
       });
       return data;
