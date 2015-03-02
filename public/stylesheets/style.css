@@ -17,27 +17,49 @@ body .footer .name {
 
 @-webkit-keyframes building {
   0% {
-    background: #26bdcf;
+    background-position: 0 0;
   }
-
   100% {
-    background: #ef5ba1;
+    background-position: 50px 50px;
   }
 }
-
 @-moz-keyframes building {
   0% {
-    background: #26bdcf;
+    background-position: 0 0;
   }
-
   100% {
-    background: #ef5ba1;
+    background-position: 50px 50px;
   }
 }
-
+@-ms-keyframes building {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes building {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
 .building {
-  -webkit-animation: building 2s ease-out 0s infinite alternate;
-  -moz-animation: building 2s ease-out 0s infinite alternate;
+  background-image: -webkit-linear-gradient(-45deg, #a0a0a0 25%, transparent 25%, transparent 50%, #a0a0a0 50%, #a0a0a0 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, #a0a0a0 25%, transparent 25%, transparent 50%, #a0a0a0 50%, #a0a0a0 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, #a0a0a0 25%, transparent 25%, transparent 50%, #a0a0a0 50%, #a0a0a0 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, #a0a0a0 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, #a0a0a0 50%, #a0a0a0 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  -webkit-background-size: 50px 50px;
+  -moz-background-size: 50px 50px;
+  -ms-background-size: 50px 50px;
+  background-size: 50px 50px;
+  -webkit-animation: building 2s linear infinite;
+  -moz-animation: building 2s linear infinite;
+  -ms-animation: building 2s linear infinite;
+  animation: building 2s linear infinite;
 }
 
 .stage {
