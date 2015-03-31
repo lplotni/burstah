@@ -3,9 +3,14 @@ html
   head
     title burstah go.cd monitor
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="/stylesheets/emojify.min.css")
+    script(src="/js/emojify.min.js")
     meta(http-equiv="refresh", content="15")
   body
     block content
 
     .footer powered by
-      span.name  burstah v 0.0.1
+      span.name  burstah
+
+    script.
+      emojify.run();
