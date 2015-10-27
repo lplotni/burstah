@@ -8,6 +8,7 @@
   "dependencies": {
     "body-parser": "~1.0.0",
     "cheerio": "0.17.0",
+    "collections": "^1.2.4",
     "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",
     "emojify.js": "^1.0.1",
